@@ -8,9 +8,10 @@ import {
   SafeAreaView,
   Button,
   Alert,
-  AsyncStorage,
+  // AsyncStorage,
 } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home({navigation}) {
   const [text, onChangeText] = React.useState('Contact number');
@@ -24,18 +25,20 @@ export default function Home({navigation}) {
 
   const getDataUsingGet = (username, password) => {
     let data = `http://jk-techno.com/login?contact=${username}&password=${password}`;
-    console.log(data);
+    console.log('url ===>>>', data);
     fetch(data, {
       method: 'GET',
     })
       .then(response => response.json())
       .then(responseJson => {
+        console.log('responseJson ====>>> ', responseJson);
         if (responseJson.success == 'true') {
-          alert('Login success');
+          // alert('Login success');
           saveData(responseJson.id);
           navigation.navigate('Dashboard');
         } else {
-          alert(responseJson.message);
+          console.log();
+          // alert(responseJson.message);
         }
       })
       .catch(error => {
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'top',
+    justifyContent: 'center',
     padding: 24,
     backgroundColor: 'white',
     flex: 1,
@@ -127,12 +130,13 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   logo: {
-    alignItems: 'top',
+    alignItems: 'center',
     height: 128,
     width: 128,
   },
   button: {
     padding: 15,
     backgroundColor: 'black',
+    marginTop: 10,
   },
 });

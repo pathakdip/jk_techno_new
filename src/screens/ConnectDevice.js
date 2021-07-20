@@ -1,101 +1,104 @@
-import React, { useState } from 'react'
-import { Text, View, StyleSheet, Image, Button,Alert, TextInput,AsyncStorage } from 'react-native';
-import { PermissionsAndroid } from 'react-native';
+import React, {useState} from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Button,
+  Alert,
+  TextInput,
+  // AsyncStorage,
+} from 'react-native';
+import {PermissionsAndroid} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-export default function ConnectDevice({ navigation }) {
-    const [text,onChangeText] =React.useState("Contact number");
-    const [number, onChangeNumber] = React.useState(null);
-    const [value, setValue] = useState({
+export default function ConnectDevice({navigation}) {
+  const [text, onChangeText] = React.useState('Contact number');
+  const [number, onChangeNumber] = React.useState(null);
+  const [value, setValue] = useState({
     SSID: '9510736166',
-    password: 'p@ssw0rd'
-  })
+    password: 'p@ssw0rd',
+  });
 
-  const getdevicedata = (SSID,password) => {
-    var data=`http://192.168.4.1/setting?ssid=${SSID}&pass=${password}`;
-    alert(data)
+  const getdevicedata = (SSID, password) => {
+    var data = `http://192.168.4.1/setting?ssid=${SSID}&pass=${password}`;
+    alert(data);
     fetch(data, {
-    method: 'GET',
+      method: 'GET',
     })
-      .then((response) => response.json())
-      .then((responseJson) => {
-      if (responseJson.success == 'true')
-        {
-          console.log("responseJson",responseJson.id)
-          navigation.navigate('Dashboard')
-        }
-        else
-        {
-          alert(responseJson.message)
+      .then(response => response.json())
+      .then(responseJson => {
+        if (responseJson.success == 'true') {
+          console.log('responseJson', responseJson.id);
+          navigation.navigate('Dashboard');
+        } else {
+          alert(responseJson.message);
         }
       })
-      .catch((error) => {
+      .catch(error => {
         alert(JSON.stringify(error));
         console.error(error);
       });
   };
 
   const onPress = () => {
-    getdevicedata(value.SSID,value.password)
-  }
+    console.log('value.SSID ====>>> ', value.SSID);
+    getdevicedata(value.SSID, value.password);
+  };
 
-  const saveData = (serailno) => {
-    let user = serailno
-    AsyncStorage.setItem('serailno',serailno);
-  }
+  const saveData = serailno => {
+    let user = serailno;
+    AsyncStorage.setItem('serailno', serailno);
+  };
 
   const displayData = async () => {
     try {
       let user = await AsyncStorage.getItem('serialno');
       alert(user);
-    }
-    catch(error){
+    } catch (error) {
       alert(error);
     }
-  }
+  };
 
   const getdeviceserial = () => {
-    var data=`http://192.168.4.1/serailno`
-    alert(data)
+    var data = `http://192.168.4.1/serailno`;
+    alert(data);
     fetch(data, {
-    method: 'GET',
+      method: 'GET',
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
-    if (responseJson.success == 'true')
-      {
-      console.log("responseJson",responseJson.id)
-      saveData(responseJson.serailno)
-      displayData()
-    }
-    else
-    {
-    alert(responseJson.message)
-    }
-  })
-    .catch((error) => {
-      alert(JSON.stringify(error));
-      console.error(error);
+      .then(response => response.json())
+      .then(responseJson => {
+        if (responseJson.success == 'true') {
+          console.log('responseJson', responseJson.id);
+          saveData(responseJson.serailno);
+          displayData();
+        } else {
+          alert(responseJson.message);
+        }
+      })
+      .catch(error => {
+        alert(JSON.stringify(error));
+        console.error(error);
       });
   };
 
-  return(
-    <View style={styles.container}>   
-    <TextInput
+  return (
+    <View style={styles.container}>
+      <TextInput
         style={styles.input}
-        onChangeText={(text) => setValue({ ...value, SSID: text })}
+        onChangeText={text => setValue({...value, SSID: text})}
         placeholder="Wifi Name"
         placeholderTextColor="#FFD700"
       />
       <TextInput
         style={styles.input}
-        onChangeText={(text) => setValue({ ...value, password: text })}
+        onChangeText={text => setValue({...value, password: text})}
         placeholder="Password"
         placeholderTextColor="#FFD700"
       />
-      <Button 
+      <Button
         style={styles.button}
-        color='#FFD700'
+        color="#FFD700"
         title="Submit"
         onPress={onPress}
       />
@@ -104,25 +107,25 @@ export default function ConnectDevice({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flexDirection: 'column',
+  container: {
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'top',
+    justifyContent: 'center',
     padding: 24,
-    backgroundColor:'white',
-    flex:1
+    backgroundColor: 'white',
+    flex: 1,
   },
   input: {
     height: 40,
     margin: 12,
-    alignItems:'stretch',
+    alignItems: 'stretch',
     borderWidth: 0,
-    textShadowColor:1,
-    color:'#000000'
+    textShadowColor: 1,
+    color: '#000000',
   },
 
-  button:{
-    padding:15,
-    backgroundColor:'black'
-  }
+  button: {
+    padding: 15,
+    backgroundColor: 'black',
+  },
 });
