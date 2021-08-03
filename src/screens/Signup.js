@@ -22,27 +22,27 @@ export default function Signup({navigation}) {
   const getDataUsingGet = (firstname, lastname, contact, emailid, password) => {
     //GET request
     var data = `http://jk-techno.com/signup?firstname=${firstname}&lastname=${lastname}&contact=${contact}&email_id=${emailid}&password=${password}`;
-    alert(data);
+    // alert(data);
     console.log(data);
     fetch(data, {
       method: 'GET',
     })
       .then(response => response.json())
       .then(responseJson => {
-        alert(JSON.stringify(responseJson));
-        alert(responseJson.message);
+        // alert(JSON.stringify(responseJson));
+        // alert(responseJson.message);
         if (responseJson.signup == 'success') {
-          alert('Signup Sucess');
+          // alert('Signup Sucess');
           navigation.navigate('Home');
         } else {
-          alert(responseJson.message);
+          // alert(responseJson.message);
         }
       })
       //If response is not in json then in error
       .catch(error => {
         //Error
-        alert(error);
-        alert(JSON.stringify(error));
+        // alert(error);
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };

@@ -59,11 +59,11 @@ export default function Dashboard({navigation}) {
           getdeviceapi(deviceid, serialno);
           //getdeviceapi(deviceid,serialno)
         } else {
-          alert('error');
+          // alert('error');
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -87,11 +87,11 @@ export default function Dashboard({navigation}) {
           getdeviceapi(deviceid, serialno);
           //getdeviceapi(deviceid,serialno)
         } else {
-          alert('error');
+          // alert('error');
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -114,11 +114,11 @@ export default function Dashboard({navigation}) {
           getdeviceapi(deviceid, serialno);
           //getdeviceapi(deviceid,serialno)
         } else {
-          alert('error');
+          // alert('error');
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -141,11 +141,11 @@ export default function Dashboard({navigation}) {
           getdeviceapi(deviceid, serialno);
           //getdeviceapi(deviceid,serialno)
         } else {
-          alert('error');
+          // alert('error');
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -153,7 +153,7 @@ export default function Dashboard({navigation}) {
     NetInfo.addEventListener(networkState => {
       console.log('Connection type - ', networkState.type);
       console.log('Is connected? - ', networkState.isConnected);
-      alert(networkState.isInternetReachable);
+      // alert(networkState.isInternetReachable);
       if (networkState.type == 'wifi') {
         if (networkState.isConnected == true) {
           if (networkState.isInternetReachable == true) {
@@ -178,11 +178,11 @@ export default function Dashboard({navigation}) {
           navigation.navigate('Dashboard');
           displayData();
         } else {
-          alert(JSON.stringify(responseJson.message));
+          // alert(JSON.stringify(responseJson.message));
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -205,7 +205,7 @@ export default function Dashboard({navigation}) {
         setisdevicepresent(true);
       })
       .catch(error => {
-        alert('test123', error);
+        // alert('test123', error);
         console.error(error);
       });
   };
@@ -237,7 +237,7 @@ export default function Dashboard({navigation}) {
         getdeviceapi(devtoken, serialno);
       }
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   };
 
@@ -246,7 +246,7 @@ export default function Dashboard({navigation}) {
   };
 
   const adddevice = () => {
-    alert('Disable you Cellular network and connect to JK-Techno wifi');
+    // alert('Disable you Cellular network and connect to JK-Techno wifi');
     networkstatus();
   };
   device();

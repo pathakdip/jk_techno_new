@@ -42,7 +42,7 @@ export default function Home({navigation}) {
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -67,9 +67,9 @@ export default function Home({navigation}) {
   const displayData = async () => {
     try {
       let usrtoken = await AsyncStorage.getItem('usrtoken');
-      alert(usrtoken);
+      // alert(usrtoken);
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   };
 

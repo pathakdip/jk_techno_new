@@ -34,17 +34,17 @@ export default function Test({navigation}) {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.success == 'true') {
-          alert(responseJson.deviceid);
+          // alert(responseJson.deviceid);
           saveDatadeviceid(responseJson.deviceid);
           console.log('responseJson', responseJson.id);
           navigation.navigate('Dashboard');
           displayData1();
         } else {
-          alert(responseJson.message);
+          // alert(responseJson.message);
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -64,7 +64,7 @@ export default function Test({navigation}) {
         adddeviceapi(usrtoken, serialno);
       }
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   };
   const d1 = true;

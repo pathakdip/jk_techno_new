@@ -22,7 +22,7 @@ export default function ConnectDevice({navigation}) {
 
   const getdevicedata = (SSID, password) => {
     var data = `http://192.168.4.1/setting?ssid=${SSID}&pass=${password}`;
-    alert(data);
+    // alert(data);
     fetch(data, {
       method: 'GET',
     })
@@ -32,11 +32,12 @@ export default function ConnectDevice({navigation}) {
           console.log('responseJson', responseJson.id);
           navigation.navigate('Dashboard');
         } else {
-          alert(responseJson.message);
+          // alert(responseJson.message);
+          console.log('response -> connect device =====>', responseJson.mesage);
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
@@ -54,15 +55,19 @@ export default function ConnectDevice({navigation}) {
   const displayData = async () => {
     try {
       let user = await AsyncStorage.getItem('serialno');
-      alert(user);
+      // alert(user);
+      console.log('user -> connect device =====>', user);
+
     } catch (error) {
-      alert(error);
+      // alert(error);
+      console.log('error -> connect device =====>', error);
+
     }
   };
 
   const getdeviceserial = () => {
     var data = `http://192.168.4.1/serailno`;
-    alert(data);
+    // alert(data);
     fetch(data, {
       method: 'GET',
     })
@@ -73,11 +78,13 @@ export default function ConnectDevice({navigation}) {
           saveData(responseJson.serailno);
           displayData();
         } else {
-          alert(responseJson.message);
+          // alert(responseJson.message);
+          console.log('response -> connect device =====>', responseJson.mesage);
+
         }
       })
       .catch(error => {
-        alert(JSON.stringify(error));
+        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
