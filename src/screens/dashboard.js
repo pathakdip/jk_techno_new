@@ -164,8 +164,8 @@ export default function Dashboard({navigation}) {
     });
   };
 
-  const adddeviceapi = (id, serialno) => {
-    var data = `http://jk-techno.com/adddevice?id=${id}&serialno=${serialno}`;
+  const adddeviceapi = (usrtoken, serialno) => {
+    var data = `http://jk-techno.com/adddevice?id=${usrtoken}&serialno=${serialno}`;
     console.log(data);
     fetch(data, {
       method: 'GET',
@@ -187,10 +187,9 @@ export default function Dashboard({navigation}) {
       });
   };
 
-  const getdeviceapi = (deviceid, serialno) => {
-    let data = `http://jk-techno.com/device?id=${deviceid}&serialno=${serialno}`;
+  const getdeviceapi = (devtoken, serialno) => {
+    let data = `http://jk-techno.com/device?id=${devtoken}&serialno=${serialno}`;
     console.log(data);
-    //alert(data)
     fetch(data, {
       method: 'GET',
     })
@@ -218,26 +217,21 @@ export default function Dashboard({navigation}) {
   const displayData = async () => {
     try {
       let usrtoken = await AsyncStorage.getItem('usrtoken');
-      //alert(usrtoken)
-      //setuserid(usrtoken)
-      //alert(userid)
+      console.log('usertoken ==>',usrtoken);
       let serialno = await AsyncStorage.getItem('serialno');
-      //alert(serialno);
-      setserialno(serialno);
+      console.log('serial no ==>',serialno);
       let devtoken = await AsyncStorage.getItem('devtoken');
       console.log('devtoken ====>>> ', devtoken);
-      //alert(devtoken)
       setdeviceid(devtoken);
-      //alert(deviceid)
-      if (devtoken === null) {
-        //alert("calling adddeviceapi")
+      if (devtoken == null) {
+        console.log('calling adddeviceapi');
         adddeviceapi(usrtoken, serialno);
       } else {
-        //alert("calling getdeviceapi")
+        console.log("calling getdeviceapi");
         getdeviceapi(devtoken, serialno);
       }
     } catch (error) {
-      // alert(error);
+      console.log(error);
     }
   };
 
@@ -280,7 +274,6 @@ export default function Dashboard({navigation}) {
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch1}
           value={d1}
-          //onValueChange={setd1(previousState => !previousState),updatedevicestate(d1,d2,d3,d4) }
         />
         <Text> Switch 2 </Text>
         <Switch
