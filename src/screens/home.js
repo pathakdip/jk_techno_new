@@ -33,16 +33,13 @@ export default function Home({navigation}) {
       .then(responseJson => {
         console.log('responseJson ====>>> ', responseJson);
         if (responseJson.success == 'true') {
-          // alert('Login success');
           saveData(responseJson.id);
           navigation.navigate('Dashboard');
         } else {
-          console.log();
-          // alert(responseJson.message);
+          console.log('error',responseJson.message);
         }
       })
       .catch(error => {
-        // alert(JSON.stringify(error));
         console.error(error);
       });
   };
